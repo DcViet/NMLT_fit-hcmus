@@ -1,5 +1,5 @@
 # DOAN_NMLT_KHTN
-#
+# tổ chức thư mục dự án
 LibraryManagement/
 ├── include/               # Thư mục chứa các file header (.h)
 │   ├── core/             # Core components
