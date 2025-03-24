@@ -1,90 +1,105 @@
 # DOAN_NMLT_KHTN
 #
-![Doan](https://gifdb.com/images/high/computer-system-coding-j3szfjv9fwb5at9x.gif)
+LibraryManagement/
+├── include/               # Thư mục chứa các file header (.h)
+│   ├── core/             # Core components
+│   │   ├── Date.h
+│   │   ├── Library.h
+│   │   └── Constants.h
+│   ├── entities/         # Các thực thể
+│   │   ├── Book.h
+│   │   ├── Reader.h
+│   │   └── BorrowTicket.h
+│   ├── services/         # Các dịch vụ
+│   │   ├── BookService.h
+│   │   ├── ReaderService.h
+│   │   └── BorrowService.h
+│   └── utils/            # Tiện ích
+│       ├── InputHelper.h
+│       ├── DateUtils.h
+│       └── Menu.h
+├── src/                  # Thư mục chứa các file nguồn (.cpp)
+│   ├── core/
+│   │   └── Library.cpp
+│   ├── entities/
+│   │   ├── Book.cpp
+│   │   ├── Reader.cpp
+│   │   └── BorrowTicket.cpp
+│   ├── services/
+│   │   ├── BookService.cpp
+│   │   ├── ReaderService.cpp
+│   │   └── BorrowService.cpp
+│   ├── utils/
+│   │   ├── InputHelper.cpp
+│   │   ├── DateUtils.cpp
+│   │   └── Menu.cpp
+│   └── main.cpp         # File main chương trình
+├── test/                # Thư mục test
+│   ├── unit_tests/      # Unit tests
+│   └── integration_tests/ # Integration tests
+├── docs/                # Tài liệu dự án
+├── CMakeLists.txt       # File cấu hình CMake
+└── README.md           # Hướng dẫn dự án
 
-Đồ án Nhập môn lập trình
-.NET mấy cũng được, MS Studio code bản nào cũng được, cứ hiện có hoặc cũ 1 vài version, đừng xem clip r xài như thời tiền xử, mới nhất càng tốt.
-*!!! Chỉ sử dụng kiến thức trong phạm vi môn học:*
-Không sử dụng **class**, tự định nghĩa các kiểu dữ liệu **(struct)**, không sử dụng các thư viện, hàm có sẵn. (trừ hàm DateTime)
-Không ràng buộc về logic chương trình nhưng code cần phải chạy và đảm bảo đủ các yêu cầu.
+#
+Tôi muốn bạn viết một chương trình quản lý thư viện chạy trên nền console bằng ngôn ngữ C++. Chương trình cần quản lý 3 loại thông tin: độc giả, sách và phiếu mượn/trả sách. Dưới đây là yêu cầu chi tiết:
 
-[Bài viết gốc](https://howkteam.vn/course/khoa-hoc-lap-trinh-c-can-ban/struct-trong-lap-trinh-c-can-ban-1221)
-*Struct là một kiểu dữ liệu có cấu trúc, được kết hợp từ các kiểu dữ liệu nguyên thuỷ do người lập trình định nghĩa để thuận tiện trong việc quản lý dữ liệu và lập trình.*
-**Đặc điểm của struct:**
-Là một kiểu dữ liệu tham trị (int, float, char, string, ..)
-Dùng để đóng gói các trường dữ liệu khác nhau nhưng có liên quan đến nhau.
-Bên trong struct ngoài các biến có kiểu dữ liệu cơ bản còn có các phương thức, các struct khác.
-Muốn sử dụng phải khởi tạo cấp phát vùng nhớ cho đối tượng thông qua toán tử new.
-Struct không được phép kế thừa (sẽ học trong môn OOP).
+### Yêu cầu thông tin:
+1. **Thông tin độc giả**:
+   - Mã độc giả (chuỗi)
+   - Họ tên (chuỗi)
+   - CMND (chuỗi)
+   - Ngày tháng năm sinh (ngày, tháng, năm)
+   - Giới tính (chuỗi)
+   - Email (chuỗi)
+   - Địa chỉ (chuỗi)
+   - Ngày lập thẻ (ngày, tháng, năm)
+   - Ngày hết hạn thẻ (tự động tính: 48 tháng kể từ ngày lập thẻ)
 
-ví dụ: Khai báo struct 
-```
-struct MatHang
-{
-public int Ma;
-public string Ten;
-}
+2. **Thông tin sách**:
+   - ISBN (chuỗi)
+   - Tên sách (chuỗi)
+   - Tác giả (chuỗi)
+   - Nhà xuất bản (chuỗi)
+   - Năm xuất bản (số nguyên)
+   - Thể loại (chuỗi)
+   - Giá sách (số nguyên)
+   - Số quyển sách (số nguyên)
 
-struct SinhVien
-        {
-            public int MaSo;
-            public string HoTen;
-        }
+3. **Thông tin phiếu mượn/trả sách**:
+   - Mã độc giả (chuỗi)
+   - Ngày mượn (ngày, tháng, năm)
+   - Ngày trả dự kiến (tự động tính: 7 ngày kể từ ngày mượn)
+   - Ngày trả thực tế (ngày, tháng, năm, nhập khi trả sách)
+   - Danh sách ISBN của các sách được mượn (danh sách chuỗi)
 
-        static void NhapThongTinSinhVien(out SinhVien SV)
-        {
-            Console.Write(" Ma so: ");
-            SV.MaSo = int.Parse(Console.ReadLine());
-            Console.Write(" Ho ten: ");
-            SV.HoTen = Console.ReadLine();
-            Console.Write(" Diem toan: ");
-            SV.DiemToan = Double.Parse(Console.ReadLine());
-            Console.Write(" Diem ly: ");
-            SV.DiemLy = Double.Parse(Console.ReadLine());
-            Console.Write(" Diem van: ");
-            SV.DiemVan = Double.Parse(Console.ReadLine());
-        }
-        
-        static double DiemTBSinhVien(SinhVien SV)
-        {
-            return (SV.DiemToan + SV.DiemLy + SV.DiemVan) / 3;
-        }
+### Yêu cầu chức năng:
+1. **Thêm độc giả**: Nhập thông tin độc giả và tự động tính ngày hết hạn thẻ.
+2. **Thêm sách**: Nhập thông tin sách.
+3. **Mượn sách**: 
+   - Nhập mã độc giả, ngày mượn, danh sách ISBN sách mượn.
+   - Giảm số lượng sách trong kho.
+   - Tính ngày trả dự kiến.
+4. **Trả sách**: 
+   - Nhập mã độc giả và ngày trả thực tế.
+   - Tăng số lượng sách trong kho.
+   - Tính tiền phạt nếu quá hạn: 5.000 đồng/ngày.
+   - (Tùy chọn: Nếu sách mất, phạt 200% giá sách, nhưng có thể bỏ qua nếu phức tạp).
 
-        static void Main(string[] args)
-        {
-            /*
-             * Khai báo 1 kiểu dữ liệu SinhVien với các trường thông tin như đề bài.
-             * Khai báo và khởi tạo 1 đối tượng SV1 kiểu SinhVien.
-             */
-            SinhVien SV1 = new SinhVien();
-            Console.WriteLine(" Nhap thong tin sinh vien: ");
-            NhapThongTinSinhVien(out SV1);
-            Console.WriteLine("*********");
-            Console.WriteLine(" Thong tin sinh vien vua nhap la: ");
-            XuatThongTinSinhVien(SV1);
-            Console.WriteLine(" Diem TB cua sinh vien la: " + DiemTBSinhVien(SV1));
+### Yêu cầu kỹ thuật:
+- Sử dụng `struct` để định nghĩa các kiểu dữ liệu cho độc giả, sách và phiếu mượn.
+- Sử dụng `vector` để lưu danh sách độc giả, sách và phiếu mượn.
+- Tạo menu chính với các lựa chọn: 
+  1. Thêm độc giả
+  2. Thêm sách
+  3. Mượn sách
+  4. Trả sách
+  5. Thoát
+- Xử lý ngày tháng đơn giản (giả sử mỗi tháng 30 ngày nếu cần).
 
-            Console.ReadLine();
-        }
-        
-        
+### Hướng dẫn:
+- Viết mã nguồn hoàn chỉnh, bao gồm các thư viện cần thiết (`iostream`, `string`, `vector`, v.v.).
+- Tạo các hàm riêng biệt cho từng chức năng (addReader, addBook, borrowBook, returnBook).
+- Đảm bảo chương trình có thể chạy lặp lại qua menu cho đến khi người dùng chọn thoát.
 
- static void NhapThongTinMatHang(out MatHang Mh)
-        {
-            Console.Write("Ma: ");
-            Mh.MaSo = int.Parse(Console.ReadLine());
-            Console.Write("tten: ");
-            SV.HoTen = Console.ReadLine();
-            Console.Write(" Diem toan: ");
-            SV.DiemToan = Double.Parse(Console.ReadLine());
-            Console.Write(" Diem ly: ");
-            SV.DiemLy = Double.Parse(Console.ReadLine());
-            Console.Write(" Diem van: ");
-            SV.DiemVan = Double.Parse(Console.ReadLine())
-```
-
- Lưu ý: bên trong vẫn còn 2 khai báo chưa được nhắc đến đó là:
-
-Constructor (hàm khởi tạo).
-Các phương thức mà mình muốn cung cấp để hỗ trợ người dùng khi thao tác với dữ liệu bên trong struct.
-Hai phần này sẽ được trình bày trong bài CLASS TRONG C#. Còn trong bài học này ta chỉ tìm hiểu cú pháp cơ bản của struct thôi.
+Hãy viết chương trình này bằng C++ và cung cấp mã nguồn hoàn chỉnh
