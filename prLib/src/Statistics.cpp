@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <string.h>
+#include <cstdlib>
+
 #include "../include/Statistics.h"
 
 // Hàm thống kê số lượng sách trong thư viện
@@ -59,16 +61,6 @@ void countReaders(int size, int fieldSize)
 {
     printf("Tong so luong doc gia: %d\n", size);
 }
-
-// tận dụng readers, bạn có thể kiểm tra các mã độc giả không rỗng
-// void countReaders(const char readers[], int size, int fieldSize) {
-//     int count = 0;
-//     for (int i = 0; i < size; i++) {
-//         int index = i * fieldSize;
-//         if (strlen(&readers[index]) > 0) count++;
-//     }
-//     printf("Tong so luong doc gia: %d\n", count);
-// }
 
 // Hàm thống kê số lượng độc giả theo giới tính
 void countReadersByGender(const char genders[], int size, int fieldSize)

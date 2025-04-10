@@ -31,54 +31,91 @@ void displayReaders(
     }
 }
 
-// Hàm thêm độc giả vào mảng
 void addReader(
     char readerIds[], char fullNames[], char idCards[],
     char birthDates[], char genders[], char emails[],
     char addresses[], char cardIssueDates[], char cardExpiryDates[],
-    int &size, int fieldSize, const char newReader[])
+    int &size, int fieldSize,
+    const char newReaderId[], const char newFullName[], const char newIdCard[],
+    const char newBirthDate[], const char newGender[], const char newEmail[],
+    const char newAddress[], const char newCardIssueDate[], const char newCardExpiryDate[])
 {
+    if (size >= fieldSize) {
+        printf("Danh sach doc gia da day, khong the them!\n");
+        return;
+    }
+
     int index = size * fieldSize;
-    
-    // Sao chép từng thuộc tính vào mảng tương ứng
-    memcpy(&readerIds[index], &newReader[0 * fieldSize], fieldSize);
-    memcpy(&fullNames[index], &newReader[1 * fieldSize], fieldSize);
-    memcpy(&idCards[index], &newReader[2 * fieldSize], fieldSize);
-    memcpy(&birthDates[index], &newReader[3 * fieldSize], fieldSize);
-    memcpy(&genders[index], &newReader[4 * fieldSize], fieldSize);
-    memcpy(&emails[index], &newReader[5 * fieldSize], fieldSize);
-    memcpy(&addresses[index], &newReader[6 * fieldSize], fieldSize);
-    memcpy(&cardIssueDates[index], &newReader[7 * fieldSize], fieldSize);
-    memcpy(&cardExpiryDates[index], &newReader[8 * fieldSize], fieldSize);
-    
+
+    // Sao chép từng giá trị vào mảng tương ứng
+    strncpy(&readerIds[index], newReaderId, fieldSize - 1);
+    readerIds[index + fieldSize - 1] = '\0';
+
+    strncpy(&fullNames[index], newFullName, fieldSize - 1);
+    fullNames[index + fieldSize - 1] = '\0';
+
+    strncpy(&idCards[index], newIdCard, fieldSize - 1);
+    idCards[index + fieldSize - 1] = '\0';
+
+    strncpy(&birthDates[index], newBirthDate, fieldSize - 1);
+    birthDates[index + fieldSize - 1] = '\0';
+
+    strncpy(&genders[index], newGender, fieldSize - 1);
+    genders[index + fieldSize - 1] = '\0';
+
+    strncpy(&emails[index], newEmail, fieldSize - 1);
+    emails[index + fieldSize - 1] = '\0';
+
+    strncpy(&addresses[index], newAddress, fieldSize - 1);
+    addresses[index + fieldSize - 1] = '\0';
+
+    strncpy(&cardIssueDates[index], newCardIssueDate, fieldSize - 1);
+    cardIssueDates[index + fieldSize - 1] = '\0';
+
+    strncpy(&cardExpiryDates[index], newCardExpiryDate, fieldSize - 1);
+    cardExpiryDates[index + fieldSize - 1] = '\0';
+
     size++;
+    printf("Them doc gia thanh cong!\n");
 }
 
-// Hàm chỉnh sửa độc giả dựa trên mã độc giả
+
 bool editReader(
     char readerIds[], char fullNames[], char idCards[],
     char birthDates[], char genders[], char emails[],
     char addresses[], char cardIssueDates[], char cardExpiryDates[],
-    int size, int fieldSize, const char targetId[], const char updatedReader[])
+    int size, int fieldSize, const char targetId[],
+    const char newReaderId[], const char newFullName[], const char newIdCard[],
+    const char newBirthDate[], const char newGender[], const char newEmail[],
+    const char newAddress[], const char newCardIssueDate[], const char newCardExpiryDate[])
 {
-    for (int i = 0; i < size; i++)
-    {
+    for (int i = 0; i < size; i++) {
         int index = i * fieldSize;
-        if (strcmp(&readerIds[index], targetId) == 0)
-        {
-            // Sao chép từng thuộc tính từ updatedReader vào mảng tương ứng
-            memcpy(&readerIds[index], &updatedReader[0 * fieldSize], fieldSize);
-            memcpy(&fullNames[index], &updatedReader[1 * fieldSize], fieldSize);
-            memcpy(&idCards[index], &updatedReader[2 * fieldSize], fieldSize);
-            memcpy(&birthDates[index], &updatedReader[3 * fieldSize], fieldSize);
-            memcpy(&genders[index], &updatedReader[4 * fieldSize], fieldSize);
-            memcpy(&emails[index], &updatedReader[5 * fieldSize], fieldSize);
-            memcpy(&addresses[index], &updatedReader[6 * fieldSize], fieldSize);
-            memcpy(&cardIssueDates[index], &updatedReader[7 * fieldSize], fieldSize);
-            memcpy(&cardExpiryDates[index], &updatedReader[8 * fieldSize], fieldSize);
+        if (strcmp(&readerIds[index], targetId) == 0) {
+            // Sao chép từng giá trị mới vào mảng tương ứng
+            strncpy(&readerIds[index], newReaderId, fieldSize - 1);
+            readerIds[index + fieldSize - 1] = '\0';
+            strncpy(&fullNames[index], newFullName, fieldSize - 1);
+            fullNames[index + fieldSize - 1] = '\0';
+            strncpy(&idCards[index], newIdCard, fieldSize - 1);
+            idCards[index + fieldSize - 1] = '\0';
+            strncpy(&birthDates[index], newBirthDate, fieldSize - 1);
+            birthDates[index + fieldSize - 1] = '\0';
+            strncpy(&genders[index], newGender, fieldSize - 1);
+            genders[index + fieldSize - 1] = '\0';
+            strncpy(&emails[index], newEmail, fieldSize - 1);
+            emails[index + fieldSize - 1] = '\0';
+            strncpy(&addresses[index], newAddress, fieldSize - 1);
+            addresses[index + fieldSize - 1] = '\0';
+            strncpy(&cardIssueDates[index], newCardIssueDate, fieldSize - 1);
+            cardIssueDates[index + fieldSize - 1] = '\0';
+            strncpy(&cardExpiryDates[index], newCardExpiryDate, fieldSize - 1);
+            cardExpiryDates[index + fieldSize - 1] = '\0';
+
             return true; // Chỉnh sửa thành công
         }
     }
+    printf("Khong tim thay doc gia voi ID: %s\n", targetId);
     return false; // Không tìm thấy độc giả
 }
 
