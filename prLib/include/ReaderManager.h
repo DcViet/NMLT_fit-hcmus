@@ -12,12 +12,6 @@ void displayReaders(
     const char addresses[], const char cardIssueDates[], const char cardExpiryDates[],
     int size, int fieldSize);
 
-// Hàm thêm độc giả vào mảng
-// void addReader(
-//     char readerIds[], char fullNames[], char idCards[],
-//     char birthDates[], char genders[], char emails[],
-//     char addresses[], char cardIssueDates[], char cardExpiryDates[],
-//     int &size, int fieldSize, const char newReader[]);
 
 void addReader(
     char readerIds[], char fullNames[], char idCards[],
@@ -28,12 +22,6 @@ void addReader(
     const char newBirthDate[], const char newGender[], const char newEmail[],
     const char newAddress[], const char newCardIssueDate[], const char newCardExpiryDate[]);
 
-// Hàm chỉnh sửa độc giả dựa trên mã độc giả
-// bool editReader(
-//     char readerIds[], char fullNames[], char idCards[],
-//     char birthDates[], char genders[], char emails[],
-//     char addresses[], char cardIssueDates[], char cardExpiryDates[],
-//     int size, int fieldSize, const char targetId[], const char updatedReader[]);
 
 bool editReader(
     char readerIds[], char fullNames[], char idCards[],

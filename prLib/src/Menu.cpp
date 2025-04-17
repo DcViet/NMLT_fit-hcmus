@@ -432,17 +432,17 @@ void readerManagementMenu(
     } while (choice != 0);
 }
 
-
 void borrowManagementMenu(
     char borrowReaderIds[], char borrowDates[], char dueDates[],
     char actualReturnDates[], char bookISBNs[],
     int &borrowSize, int maxBorrows, int borrowFieldSize,
     char borrowTickets[], char returnTickets[], int &returnSize, int maxReturns,
-    char idCards[], int readerSize, int readerFieldSize,      // Danh sách CMND độc giả
-    char isbn[], int bookSize, int bookFieldSize)            // Danh sách sách
+    char idCards[], int readerSize, int readerFieldSize, // Danh sách CMND độc giả
+    char isbn[], int bookSize, int bookFieldSize)        // Danh sách sách
 {
     int choice;
-    do {
+    do
+    {
         printf("\n=== QUAN LY MUON/TRA SACH ===\n");
         printf("1. Tao phieu muon sach\n");
         printf("2. Tao phieu tra sach\n");
@@ -451,109 +451,121 @@ void borrowManagementMenu(
         scanf("%d", &choice);
         getchar(); // Xóa ký tự xuống dòng
 
-        switch (choice) {
-            case 1: {
-                char cmnd[borrowFieldSize], borrowDate[DATE_LEN + 1], dueDate[DATE_LEN + 1], isbn[borrowFieldSize];
-                printf("Nhap so CMND doc gia: ");
-                scanf("%s", cmnd);
-                // Kiểm tra xem độc giả có tồn tại không dựa trên CMND
-                int readerIndex = searchReaderByCMND(idCards, readerSize, readerFieldSize, cmnd);
-                if (readerIndex == -1) {
-                    printf("Khong tim thay doc gia voi CMND: %s. Vui long kiem tra lai!\n", cmnd);
-                    break;
-                }
-
-                printf("Nhap ngay muon (dd/mm/yyyy): ");
-                scanf("%s", borrowDate);
-                printf("Nhap ngay den han (dd/mm/yyyy): ");
-                scanf("%s", dueDate);
-                printf("Nhap ISBN sach: ");
-                scanf("%s", isbn);
-
-                // Kiểm tra xem sách có tồn tại không
-                int bookIndex = searchBookByISBN(isbn, bookSize, bookFieldSize, isbn);
-                if (bookIndex == -1) {
-                    printf("Sach voi ISBN %s khong ton tai trong thu vien!\n", isbn);
-                    break;
-                }
-
-                createBorrowTicket(borrowReaderIds, borrowDates, dueDates, actualReturnDates, bookISBNs,
-                                   borrowSize, maxBorrows, borrowFieldSize, cmnd, borrowDate, dueDate, isbn);
+        switch (choice)
+        {
+        case 1:
+        {
+            char cmnd[borrowFieldSize], borrowDate[DATE_LEN + 1], dueDate[DATE_LEN + 1], isbnBook[borrowFieldSize];
+            printf("Nhap so CMND doc gia: ");
+            scanf("%s", cmnd);
+            // Kiểm tra xem độc giả có tồn tại không dựa trên CMND
+            int readerIndex = searchReaderByCMND(idCards, readerSize, readerFieldSize, cmnd);
+            if (readerIndex == -1)
+            {
+                printf("Khong tim thay doc gia voi CMND: %s. Vui long kiem tra lai!\n", cmnd);
                 break;
             }
- 
-            case 2: {
-                char cmnd[borrowFieldSize], returnDate[DATE_LEN + 1], isbnList[10 * borrowFieldSize];
-                int bookCount, prices[10];
-                bool lost[10];
 
-                printf("Nhap so CMND doc gia: ");
-                scanf("%s", cmnd);
+            printf("Nhap ISBN sach: ");
+            scanf("%s", isbnBook);
 
-                // Kiểm tra độc giả tồn tại
-                int readerIndex = searchReaderByCMND(idCards, readerSize, readerFieldSize, cmnd);
-                if (readerIndex == -1) {
-                    printf("Khong tim thay doc gia voi CMND: %s. Vui long kiem tra lai!\n", cmnd);
-                    break;
-                }
-
-                printf("Nhap ngay tra (dd/mm/yyyy): ");
-                scanf("%s", returnDate);
-                printf("Nhap so luong sach tra: ");
-                scanf("%d", &bookCount);
-                if (bookCount > 10) {
-                    printf("So luong sach qua gioi han (toi da 10 sach)!\n");
-                    break;
-                }
-
-                // Nhập và kiểm tra danh sách ISBN
-                for (int i = 0; i < bookCount; i++) {
-                    printf("Nhap ISBN sach %d: ", i + 1);
-                    scanf("%s", isbnList + i * borrowFieldSize);
-
-                    // Kiểm tra sách tồn tại
-                    int bookIndex = searchBookByISBN(isbn, bookSize, bookFieldSize, isbnList + i * borrowFieldSize);
-                    if (bookIndex == -1) {
-                        printf("Sach voi ISBN %s khong ton tai trong thu vien!\n", isbnList + i * borrowFieldSize);
-                        break;
-                    }
-
-                    // Kiểm tra sách đã mượn
-                    bool borrowed = false;
-                    for (int j = 0; j < borrowSize; j++) {
-                        int borrowIndex = j * borrowFieldSize;
-                        if (strcmp(&borrowReaderIds[borrowIndex], cmnd) == 0 &&
-                            strcmp(&bookISBNs[borrowIndex], isbnList + i * borrowFieldSize) == 0) {
-                            borrowed = true;
-                            break;
-                        }
-                    }
-                    if (!borrowed) {
-                        printf("Sach voi ISBN %s chua duoc muon boi doc gia nay!\n", isbnList + i * borrowFieldSize);
-                        break;
-                    }
-
-                    printf("Nhap gia sach %d (VND): ", i + 1);
-                    scanf("%d", &prices[i]);
-                    printf("Sach co bi mat khong? (1: Co, 0: Khong): ");
-                    int tempLost;
-                    scanf("%d", &tempLost);
-                    lost[i] = (tempLost != 0);
-                }
-
-                // Chỉ tạo phiếu trả nếu tất cả kiểm tra thành công
-                if (bookCount > 0) {
-                    createReturnTicket(borrowTickets, borrowSize, returnTickets, returnSize, maxReturns,
-                                       cmnd, returnDate, isbnList, bookCount, prices, lost);
-                }
+            // Kiểm tra xem sách có tồn tại không
+            int bookIndex = searchBookByISBN(isbn, bookSize, bookFieldSize, isbnBook);
+            if (bookIndex == -1)
+            {
+                printf("Sach voi ISBN %s khong ton tai trong thu vien!\n", isbnBook);
                 break;
             }
-            
-            case 0:
-                printf("Quay lai menu chinh...\n");
+            printf("Nhap ngay muon (dd/mm/yyyy): ");
+            scanf("%s", borrowDate);
+            printf("Nhap ngay den han (dd/mm/yyyy): ");
+            scanf("%s", dueDate);
+            createBorrowTicket(borrowReaderIds, borrowDates, dueDates, actualReturnDates, bookISBNs,
+                               borrowSize, maxBorrows, borrowFieldSize, cmnd, borrowDate, dueDate, isbn);
+            break;
+        }
+
+        case 2:
+        {
+            char cmnd[borrowFieldSize], returnDate[DATE_LEN + 1], isbnList[10 * borrowFieldSize];
+            int bookCount, prices[10];
+            bool lost[10];
+
+            printf("Nhap so CMND doc gia: ");
+            scanf("%s", cmnd);
+
+            // Kiểm tra độc giả tồn tại
+            int readerIndex = searchReaderByCMND(idCards, readerSize, readerFieldSize, cmnd);
+            if (readerIndex == -1)
+            {
+                printf("Khong tim thay doc gia voi CMND: %s. Vui long kiem tra lai!\n", cmnd);
                 break;
-            default:
-                printf("Lua chon khong hop le!\n");
+            }
+
+            printf("Nhap ngay tra (dd/mm/yyyy): ");
+            scanf("%s", returnDate);
+            printf("Nhap so luong sach tra: ");
+            scanf("%d", &bookCount);
+            if (bookCount > 10)
+            {
+                printf("So luong sach qua gioi han (toi da 10 sach)!\n");
+                break;
+            }
+
+            // Nhập và kiểm tra danh sách ISBN
+            for (int i = 0; i < bookCount; i++)
+            {
+                printf("Nhap ISBN sach %d: ", i + 1);
+                scanf("%s", isbnList + i * borrowFieldSize);
+
+                // Kiểm tra sách tồn tại
+                int bookIndex = searchBookByISBN(isbn, bookSize, bookFieldSize, isbnList + i * borrowFieldSize);
+                if (bookIndex == -1)
+                {
+                    printf("Sach voi ISBN %s khong ton tai trong thu vien!\n", isbnList + i * borrowFieldSize);
+                    break;
+                }
+
+                // Kiểm tra sách đã mượn
+                bool borrowed = false;
+                for (int j = 0; j < borrowSize; j++)
+                {
+                    int borrowIndex = j * borrowFieldSize;
+                    if (strcmp(&borrowReaderIds[borrowIndex], cmnd) == 0 &&
+                        strcmp(&bookISBNs[borrowIndex], isbnList + i * borrowFieldSize) == 0)
+                    {
+                        borrowed = true;
+                        break;
+                    }
+                }
+                if (!borrowed)
+                {
+                    printf("Sach voi ISBN %s chua duoc muon boi doc gia nay!\n", isbnList + i * borrowFieldSize);
+                    break;
+                }
+
+                printf("Nhap gia sach %d (VND): ", i + 1);
+                scanf("%d", &prices[i]);
+                printf("Sach co bi mat khong? (1: Co, 0: Khong): ");
+                int tempLost;
+                scanf("%d", &tempLost);
+                lost[i] = (tempLost != 0);
+            }
+
+            // Chỉ tạo phiếu trả nếu tất cả kiểm tra thành công
+            if (bookCount > 0)
+            {
+                createReturnTicket(borrowTickets, borrowSize, returnTickets, returnSize, maxReturns,
+                                   cmnd, returnDate, isbnList, bookCount, prices, lost);
+            }
+            break;
+        }
+
+        case 0:
+            printf("Quay lai menu chinh...\n");
+            break;
+        default:
+            printf("Lua chon khong hop le!\n");
         }
     } while (choice != 0);
 }

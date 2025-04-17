@@ -27,44 +27,6 @@ void displayBooks(const char isbn[], const char titles[], const char authors[],
     }
 }
 
-// Hàm thêm sách vào mảng
-// void addBook(char isbn[], char titles[], char authors[], char genres[],
-//              char years[], char publishers[], char quantities[],
-//              int &size, int maxLen, const char newBook[])
-// {
-//     if (size >= maxLen)
-//     {
-//         printf("Thu vien da day, khong the them sach!\n");
-//         return;
-//     }
-//     int index = size * maxLen;
-
-//     // Sao chép từng thuộc tính với strncpy
-//     strncpy(&isbn[index], &newBook[0 * maxLen], maxLen - 1);
-//     isbn[index + maxLen - 1] = '\0';
-
-//     strncpy(&titles[index], &newBook[1 * maxLen], maxLen - 1);
-//     titles[index + maxLen - 1] = '\0';
-
-//     strncpy(&authors[index], &newBook[2 * maxLen], maxLen - 1);
-//     authors[index + maxLen - 1] = '\0';
-
-//     strncpy(&genres[index], &newBook[3 * maxLen], maxLen - 1);
-//     genres[index + maxLen - 1] = '\0';
-
-//     strncpy(&years[index], &newBook[4 * maxLen], maxLen - 1);
-//     years[index + maxLen - 1] = '\0';
-
-//     strncpy(&publishers[index], &newBook[5 * maxLen], maxLen - 1);
-//     publishers[index + maxLen - 1] = '\0';
-
-//     strncpy(&quantities[index], &newBook[6 * maxLen], maxLen - 1);
-//     quantities[index + maxLen - 1] = '\0';
-
-//     size++;
-// }
-
-
 void addBook(char isbn[], char titles[], char authors[], char genres[],
              char years[], char publishers[], char quantities[],
              int &size, int maxLen,

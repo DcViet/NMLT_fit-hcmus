@@ -66,6 +66,19 @@ int main()
     addBook(isbn, titles, authors, genres, years, publishers, quantities, bookSize, BOOK_FIELD_SIZE,
             "1235", "Lap trinh go", "Nguyen Van B", "Giao trinh", "2021", "NXB Giao Duc", "5");
 
+    // Thêm dữ liệu mẫu cho phiếu mượn
+    createBorrowTicket(borrowReaderIds, borrowDates, dueDates, actualReturnDates, bookISBNs,
+                       borrowSize, MAX_BORROWS, BORROW_FIELD_SIZE,
+                       "123456789", "01/04/2025", "08/04/2025", "1234"); // DG001 mượn sách "Lập trình C++"
+
+    createBorrowTicket(borrowReaderIds, borrowDates, dueDates, actualReturnDates, bookISBNs,
+                       borrowSize, MAX_BORROWS, BORROW_FIELD_SIZE,
+                       "987654321", "02/04/2025", "09/04/2025", "1235"); // DG002 mượn sách "Lập trình Go"
+
+    createBorrowTicket(borrowReaderIds, borrowDates, dueDates, actualReturnDates, bookISBNs,
+                       borrowSize, MAX_BORROWS, BORROW_FIELD_SIZE,
+                       "456789123", "03/04/2025", "10/04/2025", "1234"); // DG003 mượn sách "Lập trình C++"
+
     int choice;
     do
     {

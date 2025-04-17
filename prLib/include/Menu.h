@@ -22,13 +22,6 @@ void readerManagementMenu(
     char addresses[], char cardIssueDates[], char cardExpiryDates[],
     int &readerSize, int maxReaders, int fieldSize);
 
-// Hàm xử lý menu quản lý mượn/trả sách
-// void borrowManagementMenu(
-//     char borrowReaderIds[], char borrowDates[], char dueDates[],
-//     char actualReturnDates[], char bookISBNs[],
-//     int &borrowSize, int maxBorrows, int borrowFieldSize,
-//     char borrowTickets[], char returnTickets[], int &returnSize, int maxReturns);
-
 void borrowManagementMenu(
     char borrowReaderIds[], char borrowDates[], char dueDates[],
     char actualReturnDates[], char bookISBNs[],

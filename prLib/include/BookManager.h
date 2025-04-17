@@ -7,23 +7,12 @@ void displayBooks(
     const char genres[], const char years[], const char publishers[],
     const char quantities[], int size, int maxLen);
 
-// Hàm thêm sách vào mảng
-// void addBook(
-//     char isbn[], char titles[], char authors[], char genres[],
-//     char years[], char publishers[], char quantities[],
-//     int &size, int maxLen, const char newBook[]);
-
 void addBook(char isbn[], char titles[], char authors[], char genres[],
              char years[], char publishers[], char quantities[],
              int &size, int maxLen,
              const char newIsbn[], const char newTitle[], const char newAuthor[],
              const char newGenre[], const char newYear[], const char newPublisher[],
              const char newQuantity[]);
-
-// Hàm chỉnh sửa sách dựa trên ISBN
-// bool editBook(char isbn[], char titles[], char authors[], char genres[],
-//               char years[], char publishers[], char quantities[],
-//               int size, int maxLen, const char targetIsbn[], const char updatedBook[]);
 
 bool editBook(char isbn[], char titles[], char authors[], char genres[],
               char years[], char publishers[], char quantities[],
