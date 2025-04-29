@@ -1,5 +1,3 @@
-#ifndef READER_MANAGER_H
-#define READER_MANAGER_H
 
 // Hằng số
 #define FIELD_SIZE 50  // Độ dài mỗi trường dữ liệu
@@ -46,5 +44,3 @@ int searchReaderByCMND(
 // Hàm tìm kiếm độc giả theo họ tên
 int searchReaderByName(
     const char fullNames[], int size, int fieldSize, const char targetName[]);
-
-#endif

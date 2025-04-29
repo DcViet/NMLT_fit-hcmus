@@ -1,6 +1,8 @@
 #pragma once
 
 #include "ReaderManager.h"
+#include "ReaderFunctions.h"
+#include "Menu.h"
 
 // Hàm xử lý menu quản lý độc giả
 void readerManagementMenu(

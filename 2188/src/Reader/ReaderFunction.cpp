@@ -122,29 +122,15 @@ bool deleteReader(
     return false;
 }
 
-// Hàm tìm kiếm độc giả theo CMND
-int searchReaderByCMND(
-    const char idCards[], int size, int fieldSize, const char targetCmnd[])
-{
-    for (int i = 0; i < size; i++)
-    {
-        int index = i * fieldSize;
-        if (strcmp(&idCards[index], targetCmnd) == 0)
-        {
-            return i; // Trả về vị trí tìm thấy
-        }
-    }
-    return -1; // Không tìm thấy
-}
 
-// Hàm tìm kiếm độc giả theo họ tên
-int searchReaderByName(
-    const char fullNames[], int size, int fieldSize, const char targetName[])
+// Hàm tìm kiếm độc giả theo trường dữ liệu (CMND hoặc Họ tên)
+int searchReader(
+    const char data[], int size, int fieldSize, const char target[])
 {
     for (int i = 0; i < size; i++)
     {
         int index = i * fieldSize;
-        if (strcmp(&fullNames[index], targetName) == 0)
+        if (strcmp(&data[index], target) == 0)
         {
             return i; // Trả về vị trí tìm thấy
         }

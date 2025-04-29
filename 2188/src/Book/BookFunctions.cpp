@@ -2,13 +2,13 @@
 #include <string.h>
 #include "BookFunctions.h"
 
-
-void addBook(char isbn[], char titles[], char authors[], char genres[],
-             char years[], char publishers[], char quantities[],
-             int &size, int maxLen,
-             const char newIsbn[], const char newTitle[], const char newAuthor[],
-             const char newGenre[], const char newYear[], const char newPublisher[],
-             const char newQuantity[])
+void addBook(
+    char isbn[], char titles[], char authors[], char genres[],
+    char years[], char publishers[], char quantities[],
+    int &size, int maxLen,
+    const char newIsbn[], const char newTitle[], const char newAuthor[],
+    const char newGenre[], const char newYear[], const char newPublisher[],
+    const char newQuantity[])
 {
     if (size >= maxLen)
     {
@@ -34,12 +34,13 @@ void addBook(char isbn[], char titles[], char authors[], char genres[],
 }
 
 // Hàm chỉnh sửa sách dựa trên ISBN
-bool editBook(char isbn[], char titles[], char authors[], char genres[],
-              char years[], char publishers[], char quantities[],
-              int size, int maxLen, const char targetIsbn[],
-              const char newIsbn[], const char newTitle[], const char newAuthor[],
-              const char newGenre[], const char newYear[], const char newPublisher[],
-              const char newQuantity[])
+bool editBook(
+    char isbn[], char titles[], char authors[], char genres[],
+    char years[], char publishers[], char quantities[],
+    int size, int maxLen, const char targetIsbn[],
+    const char newIsbn[], const char newTitle[], const char newAuthor[],
+    const char newGenre[], const char newYear[], const char newPublisher[],
+    const char newQuantity[])
 {
     for (int i = 0; i < size; i++)
     {
@@ -76,9 +77,10 @@ bool editBook(char isbn[], char titles[], char authors[], char genres[],
 }
 
 // Hàm xóa sách dựa trên ISBN
-bool deleteBook(char isbn[], char titles[], char authors[], char genres[],
-                char years[], char publishers[], char quantities[],
-                int &size, int maxLen, const char targetIsbn[])
+bool deleteBook(
+    char isbn[], char titles[], char authors[], char genres[],
+    char years[], char publishers[], char quantities[],
+    int &size, int maxLen, const char targetIsbn[])
 {
     for (int i = 0; i < size; i++)
     {
@@ -105,7 +107,7 @@ bool deleteBook(char isbn[], char titles[], char authors[], char genres[],
     return false; // Không tìm thấy sách
 }
 
-// Hàm tìm kiếm sách 
+// Hàm tìm kiếm sách
 int searchBook(const char arr[], int size, int maxLen, const char target[])
 {
     for (int i = 0; i < size; i++)

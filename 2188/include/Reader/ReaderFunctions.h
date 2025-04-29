@@ -29,10 +29,6 @@ bool deleteReader(
     char addresses[], char cardIssueDates[], char cardExpiryDates[],
     int &size, int fieldSize, const char targetId[]);
 
-// Hàm tìm kiếm độc giả theo CMND
-int searchReaderByCMND(
-    const char idCards[], int size, int fieldSize, const char targetCmnd[]);
-
-// Hàm tìm kiếm độc giả theo họ tên
-int searchReaderByName(
-    const char fullNames[], int size, int fieldSize, const char targetName[]);
+    // Hàm tìm kiếm độc giả theo trường dữ liệu (CMND hoặc Họ tên)
+int searchReader(
+    const char data[], int size, int fieldSize, const char target[]);

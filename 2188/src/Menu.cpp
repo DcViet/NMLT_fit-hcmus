@@ -14,4 +14,23 @@ void displayMainMenu()
     printf("Chon chuc nang: ");
 }
 
+// Hàm bỏ ký tự '\n' thừa của fgets
+void removeNewline(char str[])
+{
+    size_t len = strlen(str);
+    if (len > 0 && str[len - 1] == '\n')
+    {
+        str[len - 1] = '\0';
+    }
+}
+
+// Hàm nhập 1 trường dữ liệu (field) bất kỳ
+void inputField(const char prompt[], char output[], int fieldSize)
+{
+    printf("%s", prompt);
+    if (fgets(output, fieldSize, stdin) != NULL)
+    {
+        removeNewline(output);
+    }
+}
 

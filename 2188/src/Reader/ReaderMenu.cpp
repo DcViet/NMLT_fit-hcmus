@@ -35,32 +35,10 @@ void readerManagementMenu(
             char newBirthDate[fieldSize], newGender[fieldSize], newEmail[fieldSize];
             char newAddress[fieldSize], newCardIssueDate[fieldSize], newCardExpiryDate[fieldSize];
 
-            printf("Nhap ID doc gia: ");
-            scanf("%s", newReaderId);
-            getchar();
-            printf("Nhap ho ten: ");
-            scanf(" %[^\n]s", newFullName);
-            getchar();
-            printf("Nhap so CMND: ");
-            scanf("%s", newIdCard);
-            getchar();
-            printf("Nhap ngay sinh (dd/mm/yyyy): ");
-            scanf("%s", newBirthDate);
-            getchar();
-            printf("Nhap gioi tinh: ");
-            scanf("%s", newGender);
-            getchar();
-            printf("Nhap email: ");
-            scanf("%s", newEmail);
-            getchar();
-            printf("Nhap dia chi: ");
-            scanf(" %[^\n]s", newAddress);
-            getchar();
-            printf("Nhap ngay cap the (dd/mm/yyyy): ");
-            scanf("%s", newCardIssueDate);
-            getchar();
-            printf("Nhap ngay het han the (dd/mm/yyyy): ");
-            scanf("%s", newCardExpiryDate);
+            inputReader(newReaderId, newFullName, newIdCard,
+                        newBirthDate, newGender, newEmail,
+                        newAddress, newCardIssueDate, newCardExpiryDate,
+                        fieldSize);
 
             addReader(readerIds, fullNames, idCards, birthDates, genders, emails, addresses,
                       cardIssueDates, cardExpiryDates, readerSize, fieldSize,
@@ -68,6 +46,7 @@ void readerManagementMenu(
                       newEmail, newAddress, newCardIssueDate, newCardExpiryDate);
             break;
         }
+
         case 3:
         {
             char targetId[fieldSize];
@@ -75,36 +54,14 @@ void readerManagementMenu(
             char newBirthDate[fieldSize], newGender[fieldSize], newEmail[fieldSize];
             char newAddress[fieldSize], newCardIssueDate[fieldSize], newCardExpiryDate[fieldSize];
 
-            printf("Nhap ID doc gia can chinh sua: ");
-            scanf("%s", targetId);
-            getchar();
+            inputField("Nhap ID doc gia can chinh sua: ", targetId, fieldSize);
 
-            printf("Nhap ID doc gia moi: ");
-            scanf("%s", newReaderId);
-            getchar();
-            printf("Nhap ho ten moi: ");
-            scanf(" %[^\n]s", newFullName);
-            getchar();
-            printf("Nhap so CMND moi: ");
-            scanf("%s", newIdCard);
-            getchar();
-            printf("Nhap ngay sinh moi (dd/mm/yyyy): ");
-            scanf("%s", newBirthDate);
-            getchar();
-            printf("Nhap gioi tinh moi: ");
-            scanf("%s", newGender);
-            getchar();
-            printf("Nhap email moi: ");
-            scanf("%s", newEmail);
-            getchar();
-            printf("Nhap dia chi moi: ");
-            scanf(" %[^\n]s", newAddress);
-            getchar();
-            printf("Nhap ngay cap the moi (dd/mm/yyyy): ");
-            scanf("%s", newCardIssueDate);
-            getchar();
-            printf("Nhap ngay het han the moi (dd/mm/yyyy): ");
-            scanf("%s", newCardExpiryDate);
+            printf("Nhap thong tin moi cho doc gia:\n");
+            inputReader(
+                newReaderId, newFullName, newIdCard,
+                newBirthDate, newGender, newEmail,
+                newAddress, newCardIssueDate, newCardExpiryDate,
+                fieldSize);
 
             if (editReader(readerIds, fullNames, idCards, birthDates, genders, emails, addresses,
                            cardIssueDates, cardExpiryDates, readerSize, fieldSize, targetId,
@@ -119,6 +76,7 @@ void readerManagementMenu(
             }
             break;
         }
+
         case 4:
         {
             char targetId[fieldSize];
@@ -138,23 +96,15 @@ void readerManagementMenu(
         case 5:
         {
             char targetCmnd[fieldSize];
-            printf("Nhap CMND can tim: ");
-            scanf("%s", targetCmnd);
-            int result = searchReaderByCMND(idCards, readerSize, fieldSize, targetCmnd);
+            inputField("Nhap CMND can tim: ", targetCmnd, fieldSize);
+
+            int result = searchReader(idCards, readerSize, fieldSize, targetCmnd);
             if (result != -1)
             {
                 printf("\n=== THONG TIN DOC GIA TIM THAY ===\n");
-                int index = result * fieldSize;
-                printf("ID doc gia: %s\n", &readerIds[index]);
-                printf("Ho ten: %s\n", &fullNames[index]);
-                printf("So CMND: %s\n", &idCards[index]);
-                printf("Ngay sinh: %s\n", &birthDates[index]);
-                printf("Gioi tinh: %s\n", &genders[index]);
-                printf("Email: %s\n", &emails[index]);
-                printf("Dia chi: %s\n", &addresses[index]);
-                printf("Ngay cap the: %s\n", &cardIssueDates[index]);
-                printf("Ngay het han the: %s\n", &cardExpiryDates[index]);
-                printf("------------------------\n");
+                displayReader(
+                    readerIds, fullNames, idCards, birthDates, genders, emails,
+                    addresses, cardIssueDates, cardExpiryDates, result, fieldSize);
             }
             else
             {
@@ -162,26 +112,19 @@ void readerManagementMenu(
             }
             break;
         }
+
         case 6:
         {
             char targetName[fieldSize];
-            printf("Nhap ho ten can tim: ");
-            scanf(" %[^\n]s", targetName);
-            int result = searchReaderByName(fullNames, readerSize, fieldSize, targetName);
+            inputField("Nhap ho ten can tim: ", targetName, fieldSize);
+
+            int result = searchReader(fullNames, readerSize, fieldSize, targetName);
             if (result != -1)
             {
                 printf("\n=== THONG TIN DOC GIA TIM THAY ===\n");
-                int index = result * fieldSize;
-                printf("ID doc gia: %s\n", &readerIds[index]);
-                printf("Ho ten: %s\n", &fullNames[index]);
-                printf("So CMND: %s\n", &idCards[index]);
-                printf("Ngay sinh: %s\n", &birthDates[index]);
-                printf("Gioi tinh: %s\n", &genders[index]);
-                printf("Email: %s\n", &emails[index]);
-                printf("Dia chi: %s\n", &addresses[index]);
-                printf("Ngay cap the: %s\n", &cardIssueDates[index]);
-                printf("Ngay het han the: %s\n", &cardExpiryDates[index]);
-                printf("------------------------\n");
+                displayReader(
+                    readerIds, fullNames, idCards, birthDates, genders, emails,
+                    addresses, cardIssueDates, cardExpiryDates, result, fieldSize);
             }
             else
             {
@@ -189,6 +132,7 @@ void readerManagementMenu(
             }
             break;
         }
+
         case 0:
             printf("Quay lai menu chinh...\n");
             break;
