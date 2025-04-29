@@ -96,7 +96,9 @@ void readerManagementMenu(
         case 5:
         {
             char targetCmnd[fieldSize];
-            inputField("Nhap CMND can tim: ", targetCmnd, fieldSize);
+
+            printf("Nhap CMND can tim: ");
+            scanf("%s", targetCmnd);
 
             int result = searchReader(idCards, readerSize, fieldSize, targetCmnd);
             if (result != -1)
@@ -116,7 +118,19 @@ void readerManagementMenu(
         case 6:
         {
             char targetName[fieldSize];
-            inputField("Nhap ho ten can tim: ", targetName, fieldSize);
+            printf("Nhap ho ten can tim: ");
+            scanf(" %[^\n]", targetName);
+
+            // while (getchar() != '\n')
+            //     ;
+
+            // fgets(targetName, fieldSize, stdin);
+
+            // size_t len = strlen(targetName);
+            // if (len > 0 && targetName[len - 1] == '\n')
+            // {
+            //     targetName[len - 1] = '\0';
+            // }
 
             int result = searchReader(fullNames, readerSize, fieldSize, targetName);
             if (result != -1)

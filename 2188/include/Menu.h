@@ -1,4 +1,8 @@
 #pragma once
+#include "BookMenu.h"
+#include "BorrowMenu.h"
+#include "ReaderMenu.h"
+#include "StatisticMenu.h"
 
 // Hàm hiển thị menu chính
 void displayMainMenu();

@@ -103,3 +103,9 @@ Tôi muốn bạn viết một chương trình quản lý thư viện chạy tr�
 - Đảm bảo chương trình có thể chạy lặp lại qua menu cho đến khi người dùng chọn thoát.
 
 Hãy viết chương trình này bằng C++ và cung cấp mã nguồn hoàn chỉnh
+
+rm -rf build
+mkdir build
+cd build
+cmake ..
+make

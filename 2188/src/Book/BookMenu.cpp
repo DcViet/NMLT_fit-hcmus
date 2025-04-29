@@ -6,7 +6,7 @@
 void bookManagementMenu(
     char isbn[], char titles[], char authors[], char genres[],
     char years[], char publishers[], char quantities[],
-    int &bookSize, int maxBooks, int maxLen)
+    int &bookSize, int bookCount, int fieldSize)
 {
     int choice;
     do
@@ -26,34 +26,39 @@ void bookManagementMenu(
         switch (choice)
         {
         case 1:
-            displayBooks(isbn, titles, authors, genres, years, publishers, quantities, bookSize, maxLen);
+
+            displayBooks(
+                isbn, titles, authors, genres,
+                years, publishers, quantities,
+                bookSize, fieldSize);
+
             break;
 
         case 2:
         {
-            char newIsbn[maxLen], newTitle[maxLen], newAuthor[maxLen], newGenre[maxLen];
-            char newYear[maxLen], newPublisher[maxLen], newQuantity[maxLen];
-            inputBookInfo(newIsbn, newTitle, newAuthor, newGenre, newYear, newPublisher, newQuantity, maxLen);
+            char newIsbn[fieldSize], newTitle[fieldSize], newAuthor[fieldSize], newGenre[fieldSize];
+            char newYear[fieldSize], newPublisher[fieldSize], newQuantity[fieldSize];
+            inputBookInfo(newIsbn, newTitle, newAuthor, newGenre, newYear, newPublisher, newQuantity, fieldSize);
 
-            addBook(isbn, titles, authors, genres, years, publishers, quantities, bookSize, maxLen,
+            addBook(isbn, titles, authors, genres, years, publishers, quantities, bookSize, fieldSize,
                     newIsbn, newTitle, newAuthor, newGenre, newYear, newPublisher, newQuantity);
             break;
         }
 
         case 3:
         {
-            char targetIsbn[maxLen];
-            char newIsbn[maxLen], newTitle[maxLen], newAuthor[maxLen], newGenre[maxLen];
-            char newYear[maxLen], newPublisher[maxLen], newQuantity[maxLen];
+            char targetIsbn[fieldSize];
+            char newIsbn[fieldSize], newTitle[fieldSize], newAuthor[fieldSize], newGenre[fieldSize];
+            char newYear[fieldSize], newPublisher[fieldSize], newQuantity[fieldSize];
 
             printf("Nhap ISBN sach can chinh sua: ");
             scanf("%s", targetIsbn);
             getchar();
 
             printf("Nhap thong tin sach moi:\n");
-            inputBookInfo(newIsbn, newTitle, newAuthor, newGenre, newYear, newPublisher, newQuantity, maxLen);
+            inputBookInfo(newIsbn, newTitle, newAuthor, newGenre, newYear, newPublisher, newQuantity, fieldSize);
 
-            if (editBook(isbn, titles, authors, genres, years, publishers, quantities, bookSize, maxLen,
+            if (editBook(isbn, titles, authors, genres, years, publishers, quantities, bookSize, fieldSize,
                          targetIsbn, newIsbn, newTitle, newAuthor, newGenre, newYear, newPublisher, newQuantity))
             {
                 printf("Chinh sua sach thanh cong!\n");
@@ -67,10 +72,10 @@ void bookManagementMenu(
 
         case 4:
         {
-            char targetIsbn[maxLen];
+            char targetIsbn[fieldSize];
             printf("Nhap ISBN sach can xoa: ");
             scanf("%s", targetIsbn);
-            if (deleteBook(isbn, titles, authors, genres, years, publishers, quantities, bookSize, maxLen, targetIsbn))
+            if (deleteBook(isbn, titles, authors, genres, years, publishers, quantities, bookSize, fieldSize, targetIsbn))
             {
                 printf("Xoa sach thanh cong!\n");
             }
@@ -83,14 +88,15 @@ void bookManagementMenu(
 
         case 5:
         {
-            char targetIsbn[maxLen];
+            char targetIsbn[fieldSize];
             printf("Nhap ISBN can tim: ");
             scanf("%s", targetIsbn);
-            int result = searchBook(isbn, bookSize, maxLen, targetIsbn);
+
+            int result = searchBook(isbn, bookSize, fieldSize, targetIsbn);
             if (result != -1)
             {
                 printf("\n=== THONG TIN SACH TIM THAY ===\n");
-                displaySingleBook(isbn, titles, authors, genres, years, publishers, quantities, result * maxLen, maxLen);
+                displaySingleBook(isbn, titles, authors, genres, years, publishers, quantities, result, fieldSize);
             }
             else
             {
@@ -101,14 +107,14 @@ void bookManagementMenu(
 
         case 6:
         {
-            char targetTitle[maxLen];
+            char targetTitle[fieldSize];
             printf("Nhap ten sach can tim: ");
-            scanf(" %[^\n]s", targetTitle);
-            int result = searchBook(titles, bookSize, maxLen, targetTitle);
+            scanf(" %[^\n]", targetTitle);
+            int result = searchBook(titles, bookSize, fieldSize, targetTitle);
             if (result != -1)
             {
                 printf("\n=== THONG TIN SACH TIM THAY ===\n");
-                displaySingleBook(isbn, titles, authors, genres, years, publishers, quantities, result * maxLen, maxLen);
+                displaySingleBook(isbn, titles, authors, genres, years, publishers, quantities, result, fieldSize);
             }
             else
             {

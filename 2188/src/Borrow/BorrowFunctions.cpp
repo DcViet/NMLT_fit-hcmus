@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "BorrowManager.h"
+#include "BorrowFunctions.h"
 
 void createBorrowTicket(
     char readerIds[], char borrowDates[], char dueDates[],

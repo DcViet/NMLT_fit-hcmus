@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "ReaderManager.h"
+#include "ReaderFunctions.h"
 
 void addReader(
     char readerIds[], char fullNames[], char idCards[],

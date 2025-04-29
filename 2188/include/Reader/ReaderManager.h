@@ -1,9 +1,10 @@
 #pragma once
 
+#include "Menu.h"
 
 // Hằng số
-#define FIELD_SIZE 50 // Độ dài mỗi trường dữ liệu
-#define FIELD_COUNT 9 // Số lượng trường dữ liệu của độc giả
+// #define FIELD_SIZE 50
+// #define FIELD_COUNT 9 
 
 void displayReader(
     const char readerIds[], const char fullNames[], const char idCards[],

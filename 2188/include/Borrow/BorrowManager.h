@@ -1,6 +1,6 @@
 #pragma once
 #include "BookFunctions.h"
-#include "ReaderManager.h"
+#include "ReaderFunctions.h"
 
 int inputAndCheckCMND(char *cmnd, int borrowFieldSize, char idCards[], int readerSize, int readerFieldSize);
 

@@ -1,0 +1,3 @@
+/workspaces/NMLT_fit-hcmus/2188/build/CMakeFiles/rebuild_cache.dir
+/workspaces/NMLT_fit-hcmus/2188/build/CMakeFiles/edit_cache.dir
+/workspaces/NMLT_fit-hcmus/2188/build/CMakeFiles/LibraryManagementSystem.dir

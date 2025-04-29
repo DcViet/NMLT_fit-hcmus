@@ -1,0 +1,22 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/LibraryManagementSystem.dir/src/Book/BookFunctions.cpp.o"
+  "CMakeFiles/LibraryManagementSystem.dir/src/Book/BookManager.cpp.o"
+  "CMakeFiles/LibraryManagementSystem.dir/src/Book/BookMenu.cpp.o"
+  "CMakeFiles/LibraryManagementSystem.dir/src/Borrow/BorrowFunctions.cpp.o"
+  "CMakeFiles/LibraryManagementSystem.dir/src/Borrow/BorrowManager.cpp.o"
+  "CMakeFiles/LibraryManagementSystem.dir/src/Borrow/BorrowMenu.cpp.o"
+  "CMakeFiles/LibraryManagementSystem.dir/src/Menu.cpp.o"
+  "CMakeFiles/LibraryManagementSystem.dir/src/Reader/ReaderFunction.cpp.o"
+  "CMakeFiles/LibraryManagementSystem.dir/src/Reader/ReaderManager.cpp.o"
+  "CMakeFiles/LibraryManagementSystem.dir/src/Reader/ReaderMenu.cpp.o"
+  "CMakeFiles/LibraryManagementSystem.dir/src/Statistic/StatisticFunctions.cpp.o"
+  "CMakeFiles/LibraryManagementSystem.dir/src/Statistic/StatisticMenu.cpp.o"
+  "CMakeFiles/LibraryManagementSystem.dir/src/main.cpp.o"
+  "LibraryManagementSystem"
+  "LibraryManagementSystem.pdb"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/LibraryManagementSystem.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

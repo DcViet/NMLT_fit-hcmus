@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <string.h>
-#include "BookManager.h"
+#include "./BookManager.h"
 
 // Hàm hiển thị thông tin một cuốn sách
 void displaySingleBook(
     const char isbn[], const char titles[], const char authors[],
     const char genres[], const char years[], const char publishers[],
-    const char quantities[], int bookIndex, int maxLen)
+    const char quantities[], int bookIndex, int fieldSize)
 {
-    int offset = bookIndex * maxLen;
+    int offset = bookIndex * fieldSize;
 
     printf("ISBN: %s\n", &isbn[offset]);
     printf("Ten sach: %s\n", &titles[offset]);
@@ -24,7 +24,7 @@ void displaySingleBook(
 void displayBooks(
     const char isbn[], const char titles[], const char authors[],
     const char genres[], const char years[], const char publishers[],
-    const char quantities[], int size, int maxLen)
+    const char quantities[], int size, int fieldSize)
 {
     if (size == 0)
     {
@@ -35,19 +35,19 @@ void displayBooks(
     printf("\n=== DANH SACH SACH ===\n");
     for (int i = 0; i < size; i++)
     {
-        displaySingleBook(isbn, titles, authors, genres, years, publishers, quantities, i, maxLen);
+        displaySingleBook(isbn, titles, authors, genres, years, publishers, quantities, i, fieldSize);
     }
 }
 
 void inputBookInfo(
     char isbn[], char title[], char author[], char genre[],
-    char year[], char publisher[], char quantity[], int maxLen)
+    char year[], char publisher[], char quantity[], int fieldSize)
 {
-    inputField("Nhap ISBN: ", isbn, maxLen);
-    inputField("Nhap ten sach: ", title, maxLen);
-    inputField("Nhap tac gia: ", author, maxLen);
-    inputField("Nhap the loai: ", genre, maxLen);
-    inputField("Nhap nam xuat ban: ", year, maxLen);
-    inputField("Nhap nha xuat ban: ", publisher, maxLen);
-    inputField("Nhap so luong: ", quantity, maxLen);
+    inputField("Nhap ISBN: ", isbn, fieldSize);
+    inputField("Nhap ten sach: ", title, fieldSize);
+    inputField("Nhap tac gia: ", author, fieldSize);
+    inputField("Nhap the loai: ", genre, fieldSize);
+    inputField("Nhap nam xuat ban: ", year, fieldSize);
+    inputField("Nhap nha xuat ban: ", publisher, fieldSize);
+    inputField("Nhap so luong: ", quantity, fieldSize);
 }

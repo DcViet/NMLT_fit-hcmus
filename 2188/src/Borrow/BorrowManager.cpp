@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 #include "BorrowManager.h"
-#include "BookFunctions.h"
-#include "ReaderManager.h"
 
 int inputAndCheckCMND(char *cmnd, int borrowFieldSize, char idCards[], int readerSize, int readerFieldSize)
 {
@@ -10,7 +8,7 @@ int inputAndCheckCMND(char *cmnd, int borrowFieldSize, char idCards[], int reade
     scanf("%s", cmnd);
 
     // Kiểm tra xem độc giả có tồn tại không dựa trên CMND
-    int readerIndex = searchReaderByCMND(idCards, readerSize, readerFieldSize, cmnd);
+    int readerIndex = searchReader(idCards, readerSize, readerFieldSize, cmnd);
     if (readerIndex == -1)
     {
         printf("Khong tim thay doc gia voi CMND: %s. Vui long kiem tra lai!\n", cmnd);

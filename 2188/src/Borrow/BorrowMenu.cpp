@@ -7,8 +7,8 @@ void borrowManagementMenu(
     char actualReturnDates[], char bookISBNs[],
     int &borrowSize, int maxBorrows, int borrowFieldSize,
     char borrowTickets[], char returnTickets[], int &returnSize, int maxReturns,
-    char idCards[], int readerSize, int readerFieldSize, // Danh sách CMND độc giả
-    char isbn[], int bookSize, int bookFieldSize)        // Danh sách sách
+    char idCards[], int readerSize, int readerFieldSize, 
+    char isbn[], int bookSize, int bookFieldSize)        
 {
     int choice;
     do
@@ -19,7 +19,7 @@ void borrowManagementMenu(
         printf("0. Quay lai\n");
         printf("Chon chuc nang: ");
         scanf("%d", &choice);
-        getchar(); // Xóa ký tự xuống dòng
+        getchar(); 
 
         switch (choice)
         {
@@ -59,11 +59,11 @@ void borrowManagementMenu(
             getchar(); // Xóa ký tự xuống dòng
 
             // Kiểm tra bookCount hợp lệ
-            if (bookCount <= 0 || bookCount > 10)
-            {
-                printf("So luong sach khong hop le!\n");
-                break;
-            }
+            // if (bookCount <= 0 || bookCount > 10)
+            // {
+            //     printf("So luong sach khong hop le!\n");
+            //     break;
+            // }
 
             // Nhập ngày trả
             printf("Nhap ngay tra (dd/mm/yyyy): ");
@@ -100,15 +100,15 @@ void borrowManagementMenu(
                 }
 
                 // Nhập giá sách và trạng thái mất
-                printf("Nhap gia sach %d (VND): ", i + 1);
-                scanf("%d", &prices[i]);
-                getchar(); // Xóa ký tự xuống dòng
-                if (prices[i] < 0)
-                {
-                    printf("Gia sach khong hop le!\n");
-                    valid = false;
-                    continue;
-                }
+                // printf("Nhap gia sach %d (VND): ", i + 1);
+                // scanf("%d", &prices[i]);
+                // getchar(); 
+                // if (prices[i] < 0)
+                // {
+                //     printf("Gia sach khong hop le!\n");
+                //     valid = false;
+                //     continue;
+                // }
 
                 printf("Sach co bi mat khong? (1: Co, 0: Khong): ");
                 int tempLost;
